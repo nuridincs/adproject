@@ -1,0 +1,55 @@
+<h4>Company Form</h4>
+<div class="space">
+    <label>NPWP : </label>
+    <input type="text" ng-model="npwp" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
+    <label>Company : </label>
+    <input type="text" ng-model="company" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
+    <label>Address : </label>
+    <textarea ng-model="address" class="form-control" placeholder=""></textarea> 
+</div>
+
+<div class="space">
+    <label>Regional : </label>
+    <select ng-model="regional" name="regional" id="regional" class="form-control" placeholder="" ng-change="selectregional(regional)">
+        <option ng-repeat="regional in dataReg" value="{{regional.REGIONAL_ID}}">{{regional.REGIONAL_NAME}}</option>
+    </select>
+    <!-- <input type="text" ng-model="regional" class="form-control" placeholder="">  -->   
+</div>
+
+<div class="space">
+    <label>Country : </label>
+     <select ng-model="country" name="country" id="country" class="form-control" placeholder="" ng-change="selectcountry(country)">
+        <option ng-repeat="countrys in datacountry" value="{{countrys.COUNTRY_ID}}">{{countrys.COUNTRY_NAME}}</option>
+    </select>
+    <!-- <input type="text" ng-model="country" class="form-control" placeholder="">    -->
+    
+</div>
+
+<div class="space">
+    <label>Telephone : </label>
+    <input type="text" ng-model="telephone" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
+    <label>Fax : </label>
+    <input type="text" ng-model="fax" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
+    <label>Head Picture : </label>
+    <input type="file" file-model="picHead" class="form-control">
+</div>
+<!-- <div class="space">
+    <label>Poto Profile : </label>
+    <input type="text" ng-model="pp_profile" class="form-control" placeholder="">    
+</div> -->
+
+<div class="space">
+    <a href="#" class="btn btn-primary" ng-click="insertCompany(npwp,company,address,regional,country,telephone,fax)">Create Company</a>
+</div>

@@ -1,0 +1,16 @@
+<div class="login-form" align="center">
+    <form method="post" action="" role="login">
+        <div class="form-group" style="width:50%"">
+            <label align="left"><span>Username or Email</span></label>
+            <input type="email" ng-model="email" name="email" required class="form-control"" value="nuridin500@gmail.com" placeholder="" />
+            <span class="fa fa-user"></span>
+        </div>
+        <div class="form-group" style="width:50%">
+            <label align="left">Password</label>
+            <input type="password" ng-model="password" name="password" required class="form-control" value="admin123" placeholder="" />
+            <span class="fa fa-lock"></span>
+        </div>
+        <button type="submit" name="go" ng-click="login(email,password)" class="btn btn-primary">Login Account</button>
+        <div>Not registered? <a href="#register">Create an account</a></div>
+    </form>
+</div>

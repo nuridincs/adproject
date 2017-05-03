@@ -1,0 +1,142 @@
+<!-- <div class="jumbotron text-center">
+	<h1>Home Page</h1>
+	
+	<p>{{ message }}</p>
+</div> -->
+
+<!-- <h2>&nbsp; Welcome to Dashboard</h2> -->
+<!-- <h2>&nbsp; Welcome to Dashboard</h2> -->        
+                <div class="content-before">
+                    <div class="row">
+                        <div class="col-md-6 col-sx-12 cen-xs">
+                            <form class="dropForm">
+                                <div class="input-prepend">
+                                    <div class="btn-group">
+                                        <select name="orderby" class="selectpicker">
+                                          <option>All Category</option>
+                                          <option>House</option>
+                                          <option>Apartment</option>
+                                          <option>Condominium</option>
+                                          <option>Office</option>
+                                      </select>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Search anything here.">
+                                    <button class="btn btn-primary" tabindex="-1"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 text-right hidden-xs">
+                            <div class="catalog-order">
+                                <select name="orderby" class="selectpicker">
+                                    <option value="popularity">Sort by Popularity</option>
+                                    <option value="rating">Sort by Average Rating</option>
+                                    <option value="date" selected='selected'>Sort by Newness</option>
+                                    <option value="price">Sort by Price: Low to High</option>
+                                    <option value="price-desc">Sort by Price: High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><!-- end row -->
+                </div><!-- end content before -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12 general-title">
+                            <h4>Project list <span class="hidden-xs"><a href="#">View all</a></span></h4>
+                            <hr>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6" ng-repeat="data in listProject">
+                            <div class="item-box">
+                                <div class="item-media entry">
+                                    <img src="assets/images/uploads/project/{{ data.file }}" alt="" class="img-responsive">
+                                    <div class="magnifier">
+                                        <div class="item-author">
+                                            <a href="#"><img src="assets/images/uploads/project/{{ data.file }}" class="img-circle" alt=""> Rp. {{ data.PRO_BUDGET | number }}</a>
+                                        </div><!-- end author -->
+                                    </div>
+                                            
+                                    <div class="theme__button">
+                                        <p>
+                                            <a href="#detailProject" title="" ng-click="detail(data.PRO_ID)">View</a>
+                                        </p>
+                                    </div>
+                                </div><!-- end item-media -->
+                                <h4><a href="#">{{data.PRO_TITLE}}</a></h4>
+                                <div ng-switch on="rows">
+                                    <span ng-switch-when="1">
+                                        <a href="#" class="label label-primary" ng-click="bidding(data.PRO_ID,data.PRO_BUDGET,data.PRO_TITLE)">Bid</a> 
+                                    </span>
+                                    <span ng-switch-default>
+                                        
+                                    </span>
+                                </div>
+                                <!-- <small><a href="#"><i class="fa fa-eye"></i> 893</a></small>
+                                <small><a href="#"><i class="fa fa-comment-o"></i> 12</a></small> -->
+                            </div><!-- end item-box -->
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div><!-- end content -->
+
+                <div class="content-after text-center boxs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav class="pagination-wrapper">
+                                <ul class="pagination">
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div><!-- end row -->
+                </div><!-- end content after -->
+            </div><!-- end container -->
+        
+    </div><!-- end wrapper -->
+    <!-- END SITE -->
+	<!-- Create Modal -->
+	<div class="container">
+		<div class="modal fade" id="create-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		    <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		            <form method="POST" name="addItem" role="form" ng-submit="saveAdd()">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		                <h4 class="modal-title" id="myModalLabel">Create Item</h4>
+		            </div>
+		            <div class="modal-body">
+		                <div class="container">
+		                    <div class="row">
+		                        <div class="col-xs-12 col-sm-6 col-md-6">
+		                            <strong>Title : </strong>
+		                            <div class="form-group">
+		                                <input ng-model="form.title" type="text" placeholder="Name" name="title" class="form-control" required />
+		                            </div>
+		                        </div>
+		                        <div class="col-xs-12 col-sm-6 col-md-6">
+		                            <strong>Description : </strong>
+		                            <div class="form-group" >
+		                                <textarea ng-model="form.description" class="form-control" required>
+		                                </textarea>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		                    <button type="submit" ng-disabled="addItem.$invalid" class="btn btn-primary">Submit</button>
+		                </div>
+		            </div>
+		            </form>
+		        </div>
+		    </div>
+		</div>
+        </div>
+        <!-- close modal -->
+

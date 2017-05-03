@@ -1,0 +1,92 @@
+
+<input type="hidden" ng-model="pro_id" class="form-control" placeholder="" value="" readonly="readonly"> 
+<input type="hidden" ng-model="title" class="form-control" placeholder="" value="" readonly="readonly"> 
+<input type="hidden" ng-model="pro_user_id" class="form-control" placeholder="" value="" readonly="readonly"> 
+<input type="hidden" ng-model="pro_des" class="form-control" placeholder="" value="" readonly="readonly"> 
+<input type="hidden" ng-model="pro_budget" class="form-control" placeholder="" value="" readonly="readonly"> 
+<!-- <button class="btn btn-primary">Publish</button> -->
+<div class="row">
+    <div id="singlewrapper" class="col-md-8">
+
+        <div class="content nopad">
+            <div class="item-single-wrapper">
+                <div class="item-box">
+                    <div class="item-media text-center">
+                    <h2>{{ title }}</h2>
+                    <div class="item-desc" align="left">
+                        <p> <div>{{ pro_des }}</div> </p>
+                    </div><!-- end item-desc -->
+                        <div id="slider" class="flexslider clearfix">
+                            <ul class="slides">
+                                <li><img src="assets/images/upload/project/{{pic}}" alt="" class="img-responsive"></li><!-- 
+                                <li><img src="assets/images/upload/project/single_item_02.jpg" alt="" class="img-responsive"></li>
+                                <li><img src="assets/images/upload/project/single_item_03.jpg" alt="" class="img-responsive"></li>
+                                <li><img src="assets/images/upload/project/single_item_04.jpg" alt="" class="img-responsive"></li> -->
+                            </ul>
+                        </div>
+                        <div id="carousel" class="flexslider clearfix">
+                            <ul class="slides">
+                                <li><img src="assets/images/uploads/project/{{pic}}" alt="" class="img-responsive"></li>
+                               <!--  <li><img src="assets/images/upload/project/single_item_02.jpg" alt="" class="img-responsive"></li>
+                               <li><img src="assets/images/upload/project/single_item_03.jpg" alt="" class="img-responsive"></li>
+                               <li><img src="assets/images/upload/project/single_item_04.jpg" alt="" class="img-responsive"></li> -->
+                            </ul>
+                        </div>  
+                    </div><!-- end item-media -->
+                </div><!-- end item-box -->
+            </div><!-- end item-single-wrapper -->
+        </div><!-- end content -->
+
+    </div><!-- end singlewrapper -->
+
+    <div id="sidebar" class="col-md-4">
+        
+
+        <div class="boxes boxs">
+            <div class="desiger-details text-center">
+                <img src="assets/themes/upload/member_05.jpg" class="img-circle" alt=""></a>
+                <h4><a href="">OWNER - {{ owner }} <br> ( {{ comp }} )</a></h4>
+            </div><!-- end designer -->
+        </div><!-- end boxes -->
+
+        <div class="boxes boxs">
+            <div class="item-details">
+                <table>
+                    <tr>
+                        <td>Start Date</td>
+                        <td>{{ startdate }}</td>
+                    </tr>
+                    <tr>
+                        <td>End Date</td>
+                        <td>{{ enddate }}</td>
+                    </tr>
+                    <tr>
+                        <td>Category:</td>
+                        <td>{{ cat }}</td>
+                    </tr>
+                    <tr>
+                        <td>Location:</td>
+                        <td>{{ location }}</td>
+                    </tr>
+                    <tr>
+                        <td>Regional:</td>
+                        <td>{{ regional }}</td>
+                    </tr>
+                    <tr>
+                        <td>Country:</td>
+                        <td>{{ country }}</td>
+                    </tr>
+                    <tr>
+                        <td>Budget:</td>
+                        <td>Rp. {{ pro_budget | number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>{{ status }}</td>
+                    </tr>
+
+                </table>
+            </div><!-- end item-details -->
+        </div><!-- end boxes -->
+    </div><!-- end sidebar -->
+</div><!-- end row -->

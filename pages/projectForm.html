@@ -1,0 +1,84 @@
+<h4>Project Form</h4>
+<div class="space">
+    <label>Category : </label>
+    <select ng-model="category" name="category" id="category" class="form-control" placeholder="" ng-change="selectPro(category)">
+        <option ng-repeat="x in cat" value="{{x.CATEGORY_CODE}}">{{x.CATEGORY_NAME}}</option>
+    </select>
+</div>
+
+<div class="space">
+    <label>Title : </label>
+    <input type="text" ng-model="title" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
+    <label>Description : </label>
+    <textarea ng-model="description" class="form-control" placeholder=""></textarea> 
+</div>
+
+<div class="space">
+    <label>Location : </label>
+    <input type="text" ng-model="location" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
+    <label>Regional : </label>
+    <select ng-model="regional" name="regional" id="regional" class="form-control" placeholder="" ng-change="selectregional(regional)">
+        <option ng-repeat="regional in dataReg" value="{{regional.REGIONAL_ID}}">{{regional.REGIONAL_NAME}}</option>
+    </select>
+    <!-- <input type="text" ng-model="regional" class="form-control" placeholder="">  -->   
+</div>
+
+<div class="space">
+    <label>Country : </label>
+    <select ng-model="country" name="country" id="country" class="form-control" placeholder="" ng-change="selectcountry(country)">
+        <option ng-repeat="countrys in datacountry" value="{{countrys.COUNTRY_ID}}">{{countrys.COUNTRY_NAME}}</option>
+    </select>
+   <!--  <input type="text" ng-model="country" class="form-control" placeholder="">  -->  
+</div>
+
+<div class="space">
+    <label>Start Date : </label>
+    <input type="text" ng-model="startdate" id="date" name="startdate" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
+    <label>End Date : </label>
+    <input type="text" ng-model="enddate"  name="enddate" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
+    <label>Budget : </label>
+    <input type="text" ng-model="budget" class="form-control" placeholder="">    
+</div><!-- -->
+<div class="space">
+    <label>File : </label>
+    <input type="file"  file-model="myFile" class="form-control">
+</div> 
+<div class="space">
+    <a href="#" class="btn btn-primary" ng-click="insertProject(category,title,description,location,regional,country,startdate,enddate,budget)">Create Project</a>
+</div>
+
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="startdate"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'yyyy-mm-dd',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+
+    $(document).ready(function(){
+        var date_input=$('input[name="enddate"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'yyyy-mm-dd',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>

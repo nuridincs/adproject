@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html>
+
+<head>
+  <!-- SCROLLS -->
+  <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" /> -->
+  <title>Ada Projek</title>
+  <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/font-awesome.css" /> -->
+
+  <!-- TEMPLATE STYLES -->
+    <link rel="stylesheet" type="text/css" href="assets/themes/css/style.css">
+
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="assets/themes/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/themes/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/themes/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="assets/themes/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/themes/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/themes/css/custom.css">
+    <script src="assets/themes/js/jquery.min.js"></script>
+    <script src="assets/themes/js/bootstrap.js"></script>
+    <!-- <script src="assets/themes/js/custom.js"></script> -->
+
+
+  <!-- SPELLS -->
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script> -->
+  <script src="assets/js/angular.min.js"></script>
+  <script src="assets/js/angular-route.js"></script>
+  <script src="route.js"></script>
+  <script src="assets/packages/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+  <script src="app/directive/dirMain.js"></script>
+  <script src="app/services/srvMain.js"></script>
+  <script src="app/controller/mainCtrl.js"></script>
+  <script src="app/controller/app.js"></script>
+</head>
+
+<!-- define angular controller -->
+<body ng-app="main-adaprojek">
+
+  <div id="wrapper">
+    <header class="header">
+        <div class="container-menu">
+            <nav class="navbar navbar-default yamm">
+                <div class="container">
+                    <div class="navbar-table">
+                        <div class="navbar-cell">
+                            <div class="navbar-header">
+                                <a class="navbar-brand" href="#/"><i class="fa fa-hashtag"></i> adaproyek</a>
+                                <div class="open-menu">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="fa fa-bars"></span>
+                                    </button>
+                                </div>
+                            </div><!-- end navbar-header -->
+                        </div><!-- end navbar-cell -->
+                        <div class="navbar-cell stretch">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                <div class="navbar-cell">
+                                    <div ng-controller="sessController">
+                                       <span ng-class="cekMenu()">
+                                       <ul class="nav navbar-nav navbar-center">
+                                            <li><a class="active" href="#/" title="">Home</a></li>
+                                            <li><a href="#/company" title="">Company</a></li>
+                                            <li><a href="#/project" title="">Project</a></li> 
+                                            <li><a href="#" ng-click="logout()" title="">Logout</a></li>
+                                            <li align="right" ng-switch on="rows">
+                                                <a href="#" title="" ng-switch-when="1">Credit 
+                                                    <span class="label label-danger">Rp. {{amount | number}} </span>
+                                                </a>
+                                                <a href="#" title="" ng-switch-default>Credit 
+                                                    <span class="label label-danger">Rp. 0 </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                       </span>
+                                       <span ng-class="cekMenuFalse()">
+                                       <ul class="nav navbar-nav navbar-center">
+                                            <li><a class="active" href="#/" title="">Home</a></li>
+                                            <li><a class="active" href="#" title="">Browse Project</a></li>
+                                            <li><a class="active" href="#" title="">News</a></li>
+                                            <li><a class="active" href="#" title="">Blog</a></li>
+                                            <li><a class="active" href="#" title="">Forum</a></li>
+                                            <li><a class="active" href="#about" title="">About Us</a></li> 
+                                        </ul>
+                                       </span>
+                                     </div>                        
+                                </div><!-- end navbar-cell -->
+                            </div><!-- /.navbar-collapse -->        
+                        </div><!-- end navbar cell -->
+                    </div><!-- end navbar-table -->
+                </div><!-- end container fluid -->
+            </nav><!-- end navbar -->
+        </div><!-- end container -->
+    </header>
+    <section class="section single-wrap">
+      <div class="container">
+            <div class="page-title public-profile-title">
+                <div class="row">
+                    <div class="col-sx-12 text-center">
+                       <h3>adaproyek.com</h3>
+                        <p>adaproyek.com is the first construction marketplace in Indonesia</p>
+                        <a href="#" class="followbtn">Need a Contractor?</a> <span>-</span> <a href="#" class="followbtn">Browse Project</a> <span>-</span> <a href="#login" class="followbtn">Join Us/Login</a> 
+                    </div>
+                </div>
+            </div>
+            <div class="content-top">
+                <div class="row">
+                    <div class="col-sx-6 col-sm-6">
+                        <div class="custommenu hidden-xs">
+                            <!-- <a id="showLeft" href="#" title="" class="bt-menu-trigger"><i class="fa fa-bars"></i> <img src="assets/upload/fav.png" alt=""></a> -->
+                        </div>
+                    </div> 
+
+                    <div class="col-sm-6 col-xs-12 cen-xs text-right">
+                        <ul class="list-inline social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div><!-- end row -->
+            </div><!-- end content top -->
+            <div class="content">
+              <ng-view></ng-view>
+            </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-5">
+                    <div class="media cen-xs">
+                        <p>
+                            &copy; adaproyek - All Rights Reserverd.<br>
+                        </p>
+                    </div>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </footer><!-- end footer -->
+</div>
+  
+</body>
+
+</html>
+
+<!-- Extra JavaScript/CSS added manually in "Settings" tab -->
+<!-- Include jQuery 
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+-->
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="assets/themes/datepicker/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="assets/themes/datepicker/bootstrap-datepicker3.css"/>
+ <script src="assets/themes/js/flexslider.js"></script>
+    <script>
+        (function($) {
+        "use strict";
+        $(window).load(function() {
+            $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                directionNav: false,
+                animationLoop: true,
+                slideshow: true,
+                itemWidth: 92,
+                itemMargin: 0,
+                asNavFor: '#slider'
+            });
+       
+            $('#slider').flexslider({
+                animation: "fade",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: true,
+                sync: "#carousel"
+            });
+        });
+        })(jQuery);
+    </script>
+
+
+

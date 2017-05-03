@@ -1,0 +1,62 @@
+<div class="content boxs">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                                <a href="#/addcompany" class="btn btn-primary">Add Company</a>
+                                <hr>
+                            <div class="storelist panel panel-info">
+                                <div class="panel-body">
+                                    <div class="form-group row wow fadeIn" ng-repeat="data in company_by_user">
+                                        <div class="col-md-3 col-xs-12">
+                                            <img alt="" class="img-responsive img-thumbnail" src="assets/images/uploads/company/{{data.COMP_HEADERPIC}}">
+                                        </div>
+                                        <div class="col-md-2 col-xs-12">
+                                            <h4><a href="">{{ data.COMP_NAME }}</a></h4>
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-phone"></i> {{ data.COMP_TELP }}</a></li>
+                                                <li><i class="fa fa-map-marker"></i> {{data.COMP_ADDRESS}}</li>
+                                            </ul>
+                                        </div><!-- 
+                                        <div class="col-md-5 col-xs-12">
+                                           <ul class="list-inline">
+                                                <li><a href="single-item.html" class="screenshot" data-gal="upload/item_03.jpg" title="This is an item title <span>$12.00</span>"><img class="img-responsive img-thumbnail" src="upload/item_03.jpg" alt=""></a></li>
+                                                <li><a href="single-item.html" class="screenshot" data-gal="upload/item_04.jpg" title="This is an item title <span>$12.00</span>"><img class="img-responsive img-thumbnail" src="upload/item_04.jpg" alt=""></a></li>
+                                                <li><a href="single-item.html" class="screenshot" data-gal="upload/item_05.jpg" title="This is an item title <span>$12.00</span>"><img class="img-responsive img-thumbnail" src="upload/item_05.jpg" alt=""></a></li>
+                                            </ul>
+                                        </div>end col -->
+                                        <!-- <div class="col-md-2 col-xs-12 text-center">
+                                            <ul>
+                                                <li><a href="#" class="btn btn-primary btn-block">Follow Store</a></li>
+                                                <li><a href="public-profile.html" title="">65 Followers</a></li>
+                                                <li><a href="public-profile.html" title="">04 Following</a></li>
+                                            </ul>
+                                        </div> -->
+                                    </div><!-- end form-group -->  
+
+                                    <hr>
+                                    </div><!-- end form-group --> 
+                                </div><!-- end panel-body -->
+                            </div><!-- end panel -->
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div><!-- end content -->
+
+                <div class="content-after text-center boxs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav class="pagination-wrapper">
+                                <ul class="pagination">
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div><!-- end row -->
+                </div><!-- end content after -->
