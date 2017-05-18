@@ -1,11 +1,42 @@
-<h4>Project Form</h4>
+
+
+<script>
+    $(document).ready(function() {
+        $("button[name='addDom']").click(function() {
+           var domElement = $('<div class="space"><label>Category : </label><select ng-model="category" name="category" id="category" class="form-control" placeholder="" ng-change="selectPro(category)"><option ng-repeat="x in cat" value="{{x.CATEGORY_CODE}}">{{x.CATEGORY_NAME}}</option></select></div>');
+            //var domElement = $('<div class="btn btn-primary">cek</div>');
+            $(this).after(domElement);
+        });
+    });
+</script>
+<h4>Add Project</h4>
+<!-- <adddiv></adddiv> -->
+<!-- <select ng-model="select">
+    <option ng-repeat="kt in kategori">{{kt}}</option>
+</select>
+<button ng-click="addNama(select)">ADD</button>
+    <p ng-repeat="nm in listNama track by $index">{{($index+1)+". "+nm}}</p>
+    <input type="text" ng-model="title" placeholder="title"/>
+<button ng-click="save(title)">save</button> -->
+<!-- <div class="space" ng-controller="AutoCompleteController">
+    <label>Category : </label>
+    <input type='text' ng-keyup='fetchData()' class="form-control" placeholder="Autocomplete" ng-model='searchText'><br>
+    <ul id='searchResult' >
+        <li ng-click='setValue($index)' ng-repeat="result in searchResult" >{{ result.name }}</li>
+    </ul>
+ </div>
+ -->
 <div class="space">
     <label>Category : </label>
-    <select ng-model="category" name="category" id="category" class="form-control" placeholder="" ng-change="selectPro(category)">
-        <option ng-repeat="x in cat" value="{{x.CATEGORY_CODE}}">{{x.CATEGORY_NAME}}</option>
+    <select ng-model="category" name="category" id="category" class="form-control" style="width: 100%;" placeholder="" ng-change="selectPro(category)">
+        <option ng-repeat="x in cat" value="{{x.CATEGORY_CODE}} - {{x.CATEGORY_NAME}}">{{x.CATEGORY_NAME}}</option>
     </select>
-</div>
-
+    <a ng-click="addNama(category)" class="btn btn-primary btn-xs">Add Category</a>
+    <p ng-repeat="nm in listNama track by $index">{{($index+1)+". "+nm}}</p>
+    <!-- <input type="text" ng-model="title" placeholder="title"/>
+    <button ng-click="save(title)">save</button> -->
+</div> 
+<div id="space-for-buttons"></div>
 <div class="space">
     <label>Title : </label>
     <input type="text" ng-model="title" class="form-control" placeholder="">    
@@ -48,6 +79,11 @@
 </div>
 
 <div class="space">
+    <label>The date of the winner : </label>
+    <input type="text" ng-model="windate"  name="windate" class="form-control" placeholder="">    
+</div>
+
+<div class="space">
     <label>Budget : </label>
     <input type="text" ng-model="budget" class="form-control" placeholder="">    
 </div><!-- -->
@@ -56,7 +92,7 @@
     <input type="file"  file-model="myFile" class="form-control">
 </div> 
 <div class="space">
-    <a href="#" class="btn btn-primary" ng-click="insertProject(category,title,description,location,regional,country,startdate,enddate,budget)">Create Project</a>
+    <a href="#" class="btn btn-primary" ng-click="insertProject(category,title,description,location,regional,country,startdate,enddate,budget,windate)">Create Project</a>
 </div>
 
 <script>
@@ -73,6 +109,17 @@
 
     $(document).ready(function(){
         var date_input=$('input[name="enddate"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'yyyy-mm-dd',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+
+    $(document).ready(function(){
+        var date_input=$('input[name="windate"]'); //our date input has the name "date"
         var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
         date_input.datepicker({
             format: 'yyyy-mm-dd',

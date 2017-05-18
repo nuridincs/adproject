@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="assets/themes/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/themes/css/responsive.css">
     <link rel="stylesheet" type="text/css" href="assets/themes/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="assets/themes/js/jquery.min.js"></script>
     <script src="assets/themes/js/bootstrap.js"></script>
     <!-- <script src="assets/themes/js/custom.js"></script> -->
@@ -70,14 +71,19 @@
                                             <li><a href="#/company" title="">Company</a></li>
                                             <li><a href="#/project" title="">Project</a></li> 
                                             <li><a href="#" ng-click="logout()" title="">Logout</a></li>
-                                            <li align="right" ng-switch on="rows">
+                                            <li>
+                                                <a href="#">Credit
+                                                    <span class="label label-danger">Rp. {{amount_true || number}}
+                                                </a>
+                                            </li>
+                                            <!-- <li align="right" ng-switch on="rows">
                                                 <a href="#" title="" ng-switch-when="1">Credit 
                                                     <span class="label label-danger">Rp. {{amount | number}} </span>
                                                 </a>
                                                 <a href="#" title="" ng-switch-default>Credit 
                                                     <span class="label label-danger">Rp. 0 </span>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                        </span>
                                        <span ng-class="cekMenuFalse()">

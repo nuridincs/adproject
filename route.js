@@ -23,9 +23,9 @@
 
 			// route for the home page
 			.when('/', {
+				cache: false,
 				templateUrl : 'pages/home.html',
 				controller  : 'mainController',
-				cache: false
 			})
 
 			// route for the about page

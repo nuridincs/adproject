@@ -1,4 +1,6 @@
 app.controller('mainController', function($scope, $http, $location, $route) {
+	//alert("sini");
+	//window.location.reload();
 	$scope.nama = sessionStorage.getItem('nama');
 	$scope.amount = sessionStorage.getItem('amount');
 	$scope.comp_id = sessionStorage.getItem('comp_id');
@@ -6,7 +8,14 @@ app.controller('mainController', function($scope, $http, $location, $route) {
 	$scope.title = sessionStorage.getItem('title');
 	$scope.pro_id = sessionStorage.getItem('pro_id');
 	$scope.budget = sessionStorage.getItem('budget');
+	$scope.rows = sessionStorage.getItem('rows');
+	$scope.company = sessionStorage.getItem('company');
 
+	/*if ($scope.rows == 1) {
+		window.location.reload();
+	}*/
+
+	//alert($scope.amount);
 	$http({
 	    method: 'POST',
 	    url: base_url+'main/viewProject',
@@ -71,9 +80,9 @@ app.controller('mainController', function($scope, $http, $location, $route) {
 		    sessionStorage.setItem('status',$scope.status);
 		    sessionStorage.setItem('startdate',$scope.startdate);
 		    sessionStorage.setItem('enddate',$scope.enddate);
-
-		    $location.path('/detailProject');
 		    window.location.reload();
+		    $location.path('/detailProject');
+		    
 		});
 	}
 
@@ -158,7 +167,7 @@ app.controller('mainController', function($scope, $http, $location, $route) {
 });
 
 app.controller('loginController', function($scope, $location, $http, $route){
-	$location.path('/login');
+	//$location.path('/login');
 	
 	$scope.login = function(email, password){
 		//var user_id = sessionStorage.getItem('user_id');
@@ -189,6 +198,7 @@ app.controller('loginController', function($scope, $location, $http, $route){
 				    var company = data['result'][0]['COMPANY'];
 				    var comp_id = data['result'][0]['COMP_ID'];
 				    var rows = data['data'];
+				    //console.log(rows);
 				    sessionStorage.setItem('amount', amount);
 				    sessionStorage.setItem('company', company);
 				    sessionStorage.setItem('rows', rows);
@@ -197,9 +207,14 @@ app.controller('loginController', function($scope, $location, $http, $route){
 				sessionStorage.setItem('LOGGED', ck);
 				sessionStorage.setItem('user_id', user_id);
 				sessionStorage.setItem('nama', nama);
+
+				//return false;
+				/*window.location.reload();*/
 				$location.path('/');
+
+				/*window.location.reload();*/
 				//$route.reload();
-				window.location.reload();
+				//window.location.reload();
 			} else {
 				alert("Gagal Login");
 				$location.path('/login');
@@ -243,6 +258,24 @@ app.controller('registerController', function($scope, $http, $location) {
 	}
 });
 
+app.controller('AutoCompleteController', function($scope, $http){
+	 $scope.fetchData = function(){
+		$http({
+			method: 'post',
+			url: srv_url+'autocomplete.php',
+			data: {searchText:$scope.searchText}
+		}).then(function successCallback(response) {
+			$scope.searchResult = response.data;
+		});
+	}
+
+	// Set value to search box
+	$scope.setValue = function(index){
+		$scope.searchText = $scope.searchResult[index].name;
+		$scope.searchResult = {};
+	}
+});
+
 app.controller('projectController', function($scope, $http, $location, fileUpload) {
 	//$location.path('/project');
 	var user_id = sessionStorage.getItem('user_id');
@@ -255,45 +288,6 @@ app.controller('projectController', function($scope, $http, $location, fileUploa
 	}).success(function (data) {
 		$scope.project_by_user = data;
 	});
-
-/*
-	$http({
-	    method: 'POST',
-	    url: base_url+'main/optCat',
-	    headers: {'Content-Type': 'application/json'},
-	   //data: JSON.stringify({name: $scope.name,city:$scope.city})
-	}).success(function (data) {
-	    //console.log(data);
-	    $scope.cat = data;
-	});
-
-	$http({
-	    method: 'POST',
-	    url: base_url+'main/dataCountry',
-	    headers: {'Content-Type': 'application/json'},
-	   //data: JSON.stringify({name: $scope.name,city:$scope.city})
-	}).success(function (data) {
-	    //console.log(data);
-	    $scope.datacountry = data;
-	});
-
-	$http({
-	    method: 'POST',
-	    url: base_url+'main/dataRegional',
-	    headers: {'Content-Type': 'application/json'},
-	   //data: JSON.stringify({name: $scope.name,city:$scope.city})
-	}).success(function (data) {
-	    //console.log(data);
-	    $scope.dataReg = data;
-	});
-
-	$scope.insertProject = function(category,title,description,location,regional,country,startdate,enddate,budget){
-		//alert(startdate+enddate);
-		var file = $scope.myFile;
-		var uploadUrl = srv_url+'srv_upload_project.php';//"/fileUpload";
-		var user_id = sessionStorage.getItem('user_id');
-		fileUpload.uploadFileToUrl(file, uploadUrl, category,title,description,location,regional,country,startdate,enddate,budget,user_id);
-	}*/
 });
 
 app.controller('addprojectController', function($scope, $http, $location, fileUpload) {
@@ -306,8 +300,36 @@ app.controller('addprojectController', function($scope, $http, $location, fileUp
 	    headers: {'Content-Type': 'application/json'},
 	   //data: JSON.stringify({name: $scope.name,city:$scope.city})
 	}).success(function (data) {
-	    //console.log(data);
 	    $scope.cat = data;
+	    $scope.kategori = $scope.cat;
+		$scope.listNama = [];
+		$scope.listCode = [];
+		$scope.addNama = function(nama){
+		    var obj = {};
+		    obj['kategori'] = "Baju";
+		    obj['nama'] = nama;
+		    var arrSplit = nama.split('-');
+		    var catCode = arrSplit[0];
+		    var catName = arrSplit[1];
+		    $scope.listNama.push(catName);
+		    $scope.listCode.push(catCode);
+		}
+
+		$scope.save = function(title){
+		    var obj = {};
+		    obj['TITLE'] = title;
+		    obj['ARRAY'] = $scope.listCode;
+		    console.log($scope.listCode);
+		}
+
+		$scope.insertProject = function(category,title,description,location,regional,country,startdate,enddate,budget,windate){
+			
+			var CodeCategory = $scope.listCode;
+			var file = $scope.myFile;
+			var uploadUrl = srv_url+'srv_upload_project.php';
+			var user_id = sessionStorage.getItem('user_id');
+			fileUpload.uploadFileToUrl(file, uploadUrl, category,title,description,location,regional,country,startdate,enddate,budget,user_id,CodeCategory,windate);
+		}
 	});
 
 	$http({
@@ -330,15 +352,16 @@ app.controller('addprojectController', function($scope, $http, $location, fileUp
 	    $scope.dataReg = data;
 	});
 
-	$scope.insertProject = function(category,title,description,location,regional,country,startdate,enddate,budget){
+	
+
+	/*$scope.insertProject = function(category,title,description,location,regional,country,startdate,enddate,budget){
 		//alert(startdate+enddate);
 		var file = $scope.myFile;
 		var uploadUrl = srv_url+'srv_upload_project.php';//"/fileUpload";
 		var user_id = sessionStorage.getItem('user_id');
 		fileUpload.uploadFileToUrl(file, uploadUrl, category,title,description,location,regional,country,startdate,enddate,budget,user_id);
-	}
+	}*/
 });
-
 
 app.controller('companyController', function($scope, $location, $http, fileUploadCompany) {
 	$location.path('/company');
@@ -357,6 +380,14 @@ app.controller('companyController', function($scope, $location, $http, fileUploa
 
 app.controller('addcompanyController', function($scope, $location, $http, fileUploadCompany) {
 	var user_id = sessionStorage.getItem('user_id');
+
+	$scope.company = sessionStorage.getItem('company');
+	if($scope.company){
+		$scope.act_add_comp = alert("Sudah Ada Company");//'<a href="" title="">Company</a>';
+		$location.path('/');
+	}else{
+		$scope.act_add_comp = "Add Company";//'<a href="#/company" title="">Company</a>';
+	}
 
 	$http({
 	    method: 'POST',
@@ -400,6 +431,21 @@ app.controller('sessController', function($scope, $location, $route, $templateCa
 	$scope.user_id = sessionStorage.getItem('user_id');
 	$scope.amount = sessionStorage.getItem('amount');
 	$scope.rows = sessionStorage.getItem('rows');
+	//alert($scope.rows);
+	/*$scope.company = sessionStorage.getItem('company');
+	if($scope.company){
+		$scope.comp_menu = "1";//'<a href="#/company" title="">Company</a>';
+	}else{
+		$scope.comp_menu = "0";//'<a href="" title="">Company</a>';
+	}*/
+
+	if($scope.rows == 1){
+		$scope.amount_true = sessionStorage.getItem('amount');
+	}else{
+		$scope.amount_true = "0";
+	}
+
+	//alert($scope.amount_true);
 
 	$scope.logout = function() {
 	    sessionStorage.clear();
@@ -475,3 +521,5 @@ app.controller('PopupCont',function ($scope, $modalInstance, titlename2) {
 		$modalInstance.dismiss('cancel');
 	};
 });
+
+

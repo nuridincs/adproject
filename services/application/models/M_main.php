@@ -36,9 +36,9 @@
 	    }
 
 	    public function getAllProject(){
-	        return $this->db->query('select a.*, b.PRO_DOCFILE as file
+	        return $this->db->query('select a.*, b.PRO_DOCFILE as file, c.USER_FULLNAME as name
 									from tx_project a
-									inner join tx_project_doc b on a.PRO_ID=b.PRO_ID 
+									inner join tx_project_doc b on a.PRO_ID=b.PRO_ID inner join tm_user c on a.PRO_USER_ID=c.USER_ID
 ');       
 	    }
 
@@ -57,13 +57,13 @@
 	    public function getDetProject($id){
 	    	$sql = $this->db->query("SELECT A.*,  b.COMP_NAME AS COMP,C.PRO_DOCFILE AS 'PIC', D.USER_FULLNAME AS OWNER, E.COUNTRY_NAME AS 'COUNTRY', F.REGIONAL_NAME AS 'REGIONAL', G.CATEGORY_NAME AS 'CAT', H.REFF_DESC AS STATUS
 									FROM tx_project A 
-									INNER JOIN tm_company B ON A.PRO_USER_ID = B.COMP_USER_ID
-									INNER JOIN tx_project_doc C ON A.PRO_ID = C.PRO_ID
-									INNER JOIN tm_user D ON A.PRO_USER_ID = D.USER_ID
-									INNER JOIN tm_country E ON A.PRO_COUNTRY = E.COUNTRY_ID
-									INNER JOIN tm_regional F ON A.PRO_REGIONAL = F.REGIONAL_ID
-									INNER JOIN tm_category G ON A.PRO_CATEGORY = G.CATEGORY_CODE
-									INNER JOIN tm_reff H ON A.PRO_STATUS = H.REFF_CODE
+									LEFT JOIN tm_company B ON A.PRO_USER_ID = B.COMP_USER_ID
+									LEFT JOIN tx_project_doc C ON A.PRO_ID = C.PRO_ID
+									LEFT JOIN tm_user D ON A.PRO_USER_ID = D.USER_ID
+									LEFT JOIN tm_country E ON A.PRO_COUNTRY = E.COUNTRY_ID
+									LEFT JOIN tm_regional F ON A.PRO_REGIONAL = F.REGIONAL_ID
+									LEFT JOIN tm_category G ON A.PRO_CATEGORY = G.CATEGORY_CODE
+									LEFT JOIN tm_reff H ON A.PRO_STATUS = H.REFF_CODE
 									WHERE A.PRO_ID = '$id'");
 	    	return $sql->result();
 	    }

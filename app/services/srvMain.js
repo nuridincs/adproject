@@ -1,5 +1,5 @@
 app.service('fileUpload', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl, category,title,description,location,regional,country,startdate,enddate,budget,user_id){
+    this.uploadFileToUrl = function(file, uploadUrl, category,title,description,location,regional,country,startdate,enddate,budget,user_id,CodeCategory,windate){
         var fd = new FormData();
         fd.append('file', file);
         fd.append('category', category);
@@ -12,6 +12,8 @@ app.service('fileUpload', function ($http) {
         fd.append('enddate', enddate);
         fd.append('budget', budget);
         fd.append('user_id', user_id);
+        fd.append('CodeCategory', CodeCategory);
+        fd.append('windate', windate);
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}

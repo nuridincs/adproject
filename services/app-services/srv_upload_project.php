@@ -1,6 +1,12 @@
 <?php
     include_once "connectdb.php";
 
+    //print_r($_POST);
+    
+    //print_r($cat);
+    /*echo "Data category = ".count($cat);
+    die();*/
+
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -16,10 +22,22 @@
         $IDDATA = $ID+1;
     }
 
-    $sqlProject = "INSERT INTO tx_project VALUES ('".$IDDATA."','".$_POST['user_id']."','".$_POST['title']."','".$_POST['category']."','".$_POST['description']."','".$_POST['location']."','".$_POST['regional']."','".$_POST['country']."','".$_POST['budget']."','".date('Y-m-d H:i:s')."','PS03','".$_POST['startdate']."','".$_POST['enddate']."')";
+    $sqlProject = "INSERT INTO tx_project VALUES ('".$IDDATA."','".$_POST['user_id']."','".$_POST['title']."','t_pc','".$_POST['description']."','".$_POST['location']."','".$_POST['regional']."','".$_POST['country']."','".$_POST['budget']."','".date('Y-m-d H:i:s')."','PS03','".$_POST['startdate']."','".$_POST['enddate']."','".$_POST['windate']."')";
 
     if ($conn->query($sqlProject) === TRUE) {
         echo json_encode(array('result' => 'Insert Porject Berhasil')); // new file uploaded
+
+        $cat = explode(',',$_POST['CodeCategory']);
+        $rowsCat = count($cat);
+        for ($i=0; $i < $rowsCat; $i++) { 
+            $SQLInCode = "INSERT INTO tx_project_category VALUES('".$IDDATA."', $cat[$i])";
+            if ($conn->query($SQLInCode) === TRUE) {
+                echo json_encode(array('result' => 'Insert tc Porject Berhasil')); // new file uploaded
+            } else {
+                echo "Error: " . $SQLInCode . "<br>" . $conn->error;
+            }
+        }
+        
     } else {
         echo "Error: " . $sqlProject . "<br>" . $conn->error;
     }

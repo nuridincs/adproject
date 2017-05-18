@@ -10,6 +10,11 @@
 			parent::__construct();
 			$this->load->library('form_validation');
 			$this->load->model('m_main');
+
+			header("Access-Control-Allow-Origin: *");
+			header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+			header("Access-Control-Max-Age: 604800");
+			header("Access-Control-Allow-Headers: x-requested-with, Content-Type, origin, authorization, accept,soapaction");
 		}
 
 		public function viewProject(){
